@@ -33,7 +33,7 @@ def get_shift():
             print("Invalid input. Please enter a number.")
 
 
-if __name__ == "__main__":
+def main():
     print("Caesar Cipher - Encrypt/Decrypt")
     
     shift = get_shift()
@@ -41,22 +41,27 @@ if __name__ == "__main__":
     print(f"Shift Key set to: {shift}")
     
     while True:
-        print("\n--- Menu ---")
-        print("(E) Encode")
-        print("(D) Decode")
-        print("(Q) Quit")
-        choice = input("Select option: ").upper()
+        choice = input("\n(E)ncode message, (D)ecode message, (K)ey change, or (Q)uit? ").upper()
         
         if choice == 'Q':
-            print("Goodbye!")
             break
         elif choice == 'E':
-            text = input("Enter text to encode: ")
-            if text:
-                print(f"Encoded: {cipher.encode(text)}")
+            msg = input("Enter message to encode: ")
+            if msg:
+                enc = cipher.encode(msg)
+                print(f"Encoded: {enc}")
         elif choice == 'D':
-            text = input("Enter text to decode: ")
-            if text:
-                print(f"Decoded: {cipher.decode(text)}")
+            enc_msg = input("Enter message to decode: ")
+            if enc_msg:
+                dec = cipher.decode(enc_msg)
+                print(f"Decoded: {dec}")
+        elif choice == 'K':
+            shift = get_shift()
+            cipher = CaesarCipher(shift=shift)
+            print(f"Shift key changed to: {shift}")
         else:
             print("Invalid choice. Try again.")
+
+
+if __name__ == "__main__":
+    main()
