@@ -34,12 +34,29 @@ def get_shift():
 
 
 if __name__ == "__main__":
+    print("Caesar Cipher - Encrypt/Decrypt")
+    
     shift = get_shift()
     cipher = CaesarCipher(shift=shift)
+    print(f"Shift Key set to: {shift}")
     
-    text = input("Enter text to encode: ")
-    encoded = cipher.encode(text)
-    print(f"Encoded: {encoded}")
-    
-    decoded = cipher.decode(encoded)
-    print(f"Decoded: {decoded}")
+    while True:
+        print("\n--- Menu ---")
+        print("(E) Encode")
+        print("(D) Decode")
+        print("(Q) Quit")
+        choice = input("Select option: ").upper()
+        
+        if choice == 'Q':
+            print("Goodbye!")
+            break
+        elif choice == 'E':
+            text = input("Enter text to encode: ")
+            if text:
+                print(f"Encoded: {cipher.encode(text)}")
+        elif choice == 'D':
+            text = input("Enter text to decode: ")
+            if text:
+                print(f"Decoded: {cipher.decode(text)}")
+        else:
+            print("Invalid choice. Try again.")
